@@ -10,6 +10,11 @@
     <title>Data Siswa</title>
 </head>
 <body>
+
+
+
+
+
     <div class="float-left flex w-80 h-screen flex-col justify-between border-e bg-white">
         <div class="px-4 py-6">
           <span class="grid h-10 w-68 place-content-center rounded-lg bg-gray-100 text-xs text-gray-600">
@@ -148,7 +153,7 @@
                     <form action="/logout">
                       <button
                         type="submit"
-                        class="bg-red-400 text-white w-full rounded-lg px-4 py-2 text-sm font-medium text-gray-500 [text-align:_inherit] hover:bg-gray-100 hover:text-gray-700"
+                        class="bg-red-400 text-white w-full rounded-lg px-4 py-2 text-sm font-medium [text-align:_inherit] hover:bg-gray-100 hover:text-gray-700"
                       >
                         <a href="{{route('logout')}}">Logout</a>
                       </button>
@@ -179,6 +184,30 @@
           </a>
         </div>
       </div>
+
+      <header class="bg-gray-50">
+        <div class="mx-auto max-w-screen-xl py-8 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-end gap-4">
+            <div class="flex items-center">
+              <div class="relative">
+                <h3 class="mb-1 text-lg font-medium sm:text-xl">
+                    <p> {{ Auth::user()->name }} </p>
+                </h3>
+                </div>
+            </div>
+
+            <span aria-hidden="true" class="block h-6 w-px rounded-full bg-gray-200"></span>
+
+            <a href="#" class="block shrink-0">
+              <span class="sr-only">Profile</span>
+              <img
+                alt="Man"
+                src="https://th.bing.com/th/id/R.aee6adef085a77dfa4708f3fd4a1ffb5?rik=nj%2buNqgLIJU0JQ&pid=ImgRaw&r=0"
+                class="h-10 w-10 rounded-full object-cover"
+              />
+            </a>
+          </div>
+      </header>
 @yield('content')
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

@@ -16,6 +16,13 @@
         >
           <a href="{{route('ps.rekap')}}">Rekapitulasi Data</a>
         </button>
+        <button
+        class="inline-block border-e px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative"
+        title="View Orders"
+        >
+        <a href="{{route('ps.export-excel')}}">Export</a>
+        </button>
+        </span>
       </span>
     @if(Session::get('success'))
     <div class="alert alert-success">{{Session::get('success')}}</div>

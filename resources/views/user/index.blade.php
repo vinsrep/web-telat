@@ -70,12 +70,12 @@
                         <button
                           class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative">
                             <a
-                                href="{{route('late.edit', $item['id'])}}">
+                                href="{{route('user.edit', $item['id'])}}">
                                 Edit
                             </a>
                         </button>
 
-                        <form action="{{ route('late.delete', $item['id']) }}" method="POST">
+                        <form action="{{ route('user.delete', $item['id']) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button

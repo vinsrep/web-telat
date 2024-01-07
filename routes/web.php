@@ -7,6 +7,7 @@ use App\Http\Controllers\RayonsController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\RombelsController;
 use App\Http\Controllers\PDFController;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\Route;
 
 
@@ -80,11 +81,12 @@ Route::middleware(['IsLogin', 'IsUser'])->group(function () {
     Route::prefix('/ps')->name('ps.')->group(function () {
         Route::get('/', [PDFController::class, 'index'])->name('home');
         Route::get('/rekap', [PDFController::class, 'rekap'])->name('rekap');
-        Route::get('/{id}', [PDFController::class, 'pdf'])->name('pdf');
-        Route::get('/download/{id}', [PDFController::class, 'downloadPDF'])->name('download');
-            Route::prefix("/student")->name('student.')->group(function () {
-                Route::get('/index', [PDFController::class, 'students'])->name('index');
-            });
+        Route::prefix("/student")->name('student.')->group(function () {
+            Route::get('/index', [PDFController::class, 'students'])->name('index');
         });
-        Route::get('/data', [LatesController::class,'data'])->name('data');
+        Route::get('/pdf/{id}', [PDFController::class, 'pdf'])->name('pdf');
+        Route::get('/download/{id}', [PDFController::class, 'downloadPDF'])->name('download');
+        Route::get('/data/{id}', [PDFController::class, 'data'])->name('data');
+        Route::get('/export-excel', [PDFController::class,'exportExcel'])->name('export-excel');
     });
+});

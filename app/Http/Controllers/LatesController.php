@@ -18,8 +18,7 @@ class LatesController extends Controller
     {
         $rayons = Rayons::where('id', $id)->get();
         $students = Students::where('id', $id)->get();
-        $lates = Lates::all();
-        return view("late.pdf", compact("lates","students","rayons"));
+        return view("late.pdf", compact("students","rayons"));
     }
     public function downloadPDF($id){
         $students = Students::where('id', $id)->get()->toArray();
@@ -140,8 +139,11 @@ class LatesController extends Controller
 
     public function data($id)
     {
+        $students = Students::where('id', $id)->get();
+        $name = $students->unique("id");
+        $name->values()->all();
         $lates = Lates::where('id', $id)->get();
-        return view("late.data", compact("lates"));
+        return view("late.data", compact("lates","students","name"));
     }
     public function exportExcel(){
         $file_name = 'data_telat' . '.xlsx';

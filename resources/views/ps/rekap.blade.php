@@ -18,10 +18,10 @@
         </button>
 
         <button
-            class="inline-block px-4 py-2 text-gray-700 hover:bg-gray-50 focus:relative"
+            class="inline-block border-e px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative"
             title="View Orders"
         >
-        <a href="">Export</a>
+        <a href="{{route('ps.export-excel')}}">Export</a>
         </button>
       </span>
     @if(Session::get('success'))
@@ -56,12 +56,11 @@
                 <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                     <span class="inline-flex -space-x-px overflow-hidden rounded-md border bg-white shadow-sm">
                         <button type="button"
-                        data-toggle="modal" data-target="#warning{{ $item['id'] }}"
                         class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative">
-                        Lihat
+                        <a href="{{route('ps.data', $item['id'])}}">Lihat</a>
                         </button>
 
-                        <div class="modal fade" id="warning{{ $item['id'] }}" tabindex="-1" role="dialog"
+                        {{-- <div class="modal fade" id="warning{{ $item['id'] }}" tabindex="-1" role="dialog"
                             aria-labelledby="warning" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -79,19 +78,20 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
 
 
                         <button
                               class="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative">
                               <a
-                              href="{{route('ps.pdf',$item['id'])}}"
+                              href="{{route('ps.pdf', $item['id'])}}"
                               >Cetak
                             </a>
                         </button>
                       </span>
                     </td>
+
             </tr>
             @endforeach
             @endforeach

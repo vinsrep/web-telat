@@ -2,32 +2,9 @@
 
 @section('content')
 
-<header class="bg-gray-50">
-    <div class="mx-auto max-w-screen-xl py-8 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-end gap-4">
-        <div class="flex items-center">
-          <div class="relative">
-            <h3 class="mb-1 text-lg font-medium sm:text-xl">
-                <p> {{ Auth::user()->name }} </p>
-            </h3>
-            </div>
-        </div>
 
-        <span aria-hidden="true" class="block h-6 w-px rounded-full bg-gray-200"></span>
-
-        <a href="#" class="block shrink-0">
-          <span class="sr-only">Profile</span>
-          <img
-            alt="Man"
-            src="https://th.bing.com/th/id/R.aee6adef085a77dfa4708f3fd4a1ffb5?rik=nj%2buNqgLIJU0JQ&pid=ImgRaw&r=0"
-            class="h-10 w-10 rounded-full object-cover"
-          />
-        </a>
-      </div>
-  </header>
-
-
-
+@if (Auth::check())
+@if (Auth::user()->role == "admin")
 <div class="grid grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-8">
     <article class="ml-10 mt-12 w-80 rounded-xl bg-white p-4 ring ring-indigo-50 sm:p-6 lg:p-8">
         <div class="flex items-start sm:gap-8">
@@ -186,6 +163,93 @@
         </div>
         </article>
 </div>
+@endif
 
+@if (Auth::user()->role == "pembimbing")
+<div class="grid grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-8">
+    <article class="ml-10 mt-12 w-80 rounded-xl bg-white p-4 ring ring-indigo-50 sm:p-6 lg:p-8">
+        <div class="flex items-start sm:gap-8">
+            <div
+            class=" hidden sm:grid sm:h-20 sm:w-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-indigo-500"
+            aria-hidden="true"
+            >
+            <div class="flex items-center gap-1">
+                <svg
+                    class="h-6 w-6"
+                    fill="#6366F1"
+                >
+                    <path
+                    fill-rule="evenodd"
+                    d="M22.68 7.205h-3.776a.263.263 0 0 1-.223-.403l1.666-2.664a.897.897 0 0 0-.76-1.372H4.092c-.54 0-1.04.29-1.31.758C2.09 4.734.758 7.054.23 7.974a1.688 1.688 0 0 0-.223.839L0 15.77a1.499 1.499 0 0 0 1.499 1.5h4.78a.082.082 0 0 1 .067.127l-1.648 2.43a.9.9 0 0 0 .745 1.406h14.542a2.07 2.07 0 0 0 1.81-1.068c.465-.842 1.201-2.008 1.656-2.831.36-.653.549-1.387.549-2.133V8.526c0-.73-.591-1.32-1.32-1.32zm-18.65-1.9a1.43 1.43 0 0 1 1.43-1.43h13.278a.339.339 0 0 1 .284.525l-1.744 2.67a.299.299 0 0 1-.25.135H9.363c-.514 0-.993.26-1.274.69-.833 1.278-2.342 3.882-2.347 3.923h-.187a1.456 1.456 0 0 1-1.526-1.455V5.306zM2.255 16.35a.521.521 0 0 1-.41-.843l1.606-2.055a1.664 1.664 0 0 1 1.308-.64l14.028-.049a.321.321 0 0 1 .275.49l-1.233 2.015c-.194.316-.538.51-.91.51H7.854a1 1 0 0 0-.905.572H2.256zm19.934 1.113c-.366.635-.975 1.532-1.33 2.15-.25.433-.71.7-1.21.7H6.075a.27.27 0 0 1-.221-.425l1.968-2.793a.936.936 0 0 1 .765-.396h13.16a.51.51 0 0 1 .442.764zm.795-2.451a.766.766 0 0 1-.766.765h-2.631a.49.49 0 0 1-.416-.75l1.086-1.746a.968.968 0 0 0-.822-1.48H7.782a.389.389 0 0 1-.329-.597c.43-.675.936-1.767 1.371-2.452a1.346 1.346 0 0 1 1.136-.624h12.274a.75.75 0 0 1 .75.75v6.134z"                        clip-rule="evenodd"
+                    />
+                </svg>
+            </div>
+            </div>
+            @php
+            $shit = App\Models\User::where('id', '=', Auth::id())->get('name');
+            $shit2 = str_replace(['[{"name":"','"}]'], '', $shit);
+            $rayon = App\Models\Rayons::where('user_id', '=', $shit2)->get('rayon');
+            $rayon2 = str_replace(['[{"rayon":"','"}]'], '', $rayon);
+            @endphp
+
+            <div>
+            <strong
+                class="rounded border border-indigo-500 bg-indigo-500 px-3 py-1.5 text-[10px] font-medium text-white"
+            >
+                Peserta Rayon {{$rayon2}}
+            </strong>
+
+            <h3 class="mt-4 text-lg font-medium sm:text-xl">
+                <a href="" class="hover:underline"> {{App\Models\Students::where('rayon_id', '=', $rayon2)->count()}} </a>
+            </h3>
+            </div>
+        </div>
+        </article>
+    <article class="ml-10 mt-12 w-80 rounded-xl bg-white p-4 ring ring-indigo-50 sm:p-6 lg:p-8">
+        <div class="flex items-start sm:gap-8">
+            <div
+            class=" hidden sm:grid sm:h-20 sm:w-20 sm:shrink-0 sm:place-content-center sm:rounded-full sm:border-2 sm:border-indigo-500"
+            aria-hidden="true"
+            >
+            <div class="flex items-center gap-1">
+                <svg
+                    class="h-6 w-6"
+                    fill="#6366F1"
+                >
+                    <path
+                    fill-rule="evenodd"
+                    d="M5.463 3.476C6.69 5.225 7.497 7.399 7.68 9.798a12.9 12.9 0 0 1-.672 5.254 4.29 4.29 0 0 1 2.969-1.523c.05-.004.099-.006.148-.008.08-.491.47-3.45-.977-6.68-1.068-2.386-3-3.16-3.685-3.365Zm1.777.037s2.406 1.066 3.326 5.547c.607 2.955.049 4.836-.402 5.773a7.347 7.347 0 0 1 4.506-1.994c.86-.065 1.695.02 2.482.233-.1-.741-.593-3.414-2.732-5.92-3.263-3.823-7.18-3.64-7.18-3.64Zm14.817 9.701-17.92 3.049a2.284 2.284 0 0 1 1.535 2.254 2.31 2.31 0 0 1-.106.61c.055-.027 2.689-1.275 6.342-2.034 3.238-.673 5.723-.36 6.285-.273a6.46 6.46 0 0 1 3.864-3.606zm-6.213 4.078c-2.318 0-4.641.495-6.614 1.166-2.868.976-2.951 1.348-5.55 1.043C1.844 19.286 0 18.386 0 18.386s2.406 1.97 4.914 2.127c1.986.125 3.505-.822 5.315-1.414 2.661-.871 4.511-.97 6.253-.975C19.361 18.116 24 19.353 24 19.353s-2.11-1.044-5.033-1.72a13.885 13.885 0 0 0-3.123-.34Z"                    />
+                </svg>
+            </div>
+            </div>
+
+            <div>
+                <strong
+                    class="rounded border border-indigo-500 bg-indigo-500 px-3 py-1.5 text-[10px] font-medium text-white"
+                >
+                    Peserta terlambat
+                </strong>
+                <br>
+                {{-- <strong
+                    class="rounded border border-indigo-500 bg-indigo-500 px-3 py-1.5 text-[10px] font-medium text-white"
+                >
+                    @php
+                        $date = date('Y-m-D');
+                        print($date);
+                        $late = App\Models\Lates::where('id','=','4')->get('date_time_late');
+                        $late2 = date('Y-m-D', $late);
+                        $late3 = str_replace(['Sat[{"date_time_late":"','"},{"date_time_late":"'], '', $late);
+                        print($late3);
+                    @endphp
+                </strong> --}}
+            <h3 class="mt-4 text-lg font-medium sm:text-xl">
+                <a href="" class="hover:underline"> {{App\Models\Students::where('rayon_id', '=', 'Wikrama 4')->count()}} </a>
+            </h3>
+            </div>
+        </div>
+        </article>
+</div>
+@endif
+@endif
 
 @endsection

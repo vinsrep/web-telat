@@ -1,10 +1,17 @@
-@extends('layouts.template')
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <title>Data Siswa</title>
+    </head>
+<body>
 
-@section('content')
-
-<section class="bg-white">
-    <div class="lg:grid lg:min-h-screen lg:grid-cols-12">
-
+<div class="relative block overflow-hidden p-4 sm:p-6 lg:p-8">
       <main
         class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6"
       >
@@ -67,13 +74,12 @@
               <button type="submit"
                 class="inline-block shrink-0 rounded-md border border-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500" style="background-color: #1F3984"
               >
-                Create an account
+                Login
               </button>
             </div>
           </form>
         </div>
       </main>
-    </div>
-  </section>
+</div>
 
-@endsection
+
